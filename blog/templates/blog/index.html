@@ -1,0 +1,43 @@
+{% extends "blog/main.html" %}
+
+{% load humanize %}
+
+{% block title %}| Home{% endblock %}
+{% block content %}
+
+{% for post in posts %}
+    <a href="{% url "post" pk=post.pk %}" class="title"><h2>{{ post.title }}</a> <small>{{ post.posted|naturaltime }} by {{ post.author.first_name }} {{ post.author.last_name }}</small></h2>
+    <p>{{ post.body|truncatechars:400 }} <a href="{% url "post" pk=post.pk %}">Read More</a></p>
+    {% for tag in post.tags.all %}
+        <span class="tag"><a href="{% url 'tag' tag=tag.name %}">#{{ tag.name }}</a></span>
+    {% endfor %}
+    <br />
+{% endfor %}
+
+<br />
+
+<div class="pagination" style="text-align:center;color:gray;display:block; font-size: 1.5em;">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="/page/{{ posts.previous_page_number }}"><i class="glyphicon glyphicon-menu-left"></i></a>
+        {% endif %}
+        
+        {% if not posts.has_previous %}
+            <i class="glyphicon glyphicon-menu-left"></i>
+        {% endif %}
+
+        <span class="current" style="position: relative; top:-2px;">
+            {{ posts.number }} of {{ posts.paginator.num_pages }}
+        </span>
+
+        {% if posts.has_next %}
+            <a href="/page/{{ posts.next_page_number }}"><i class="glyphicon glyphicon-menu-right"></i></a>
+        {% endif %}
+        
+        {% if not posts.has_next %}
+            <i class="glyphicon glyphicon-menu-right"></i>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

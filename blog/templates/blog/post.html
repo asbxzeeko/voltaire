@@ -1,0 +1,18 @@
+{% extends "blog/main.html" %}
+
+{% block title %}| {{ post.title }}{% endblock %}
+{% block content %}
+
+<span class='st_pinterest_large' displayText='Pinterest'></span>
+<span class='st_facebook_large' displayText='Facebook'></span>
+<span class='st_twitter_large' displayText='Tweet'></span>
+<span class='st_reddit_large' displayText='Reddit'></span>
+<span class='st_email_large' displayText='Email'></span>
+
+<h2>{{ post.title }} <small>{{ post.posted }}</small></h2>
+<p>{{ post.body|linebreaks }}</p>
+{% for tag in post.tags.all %}
+    <span class="tag"><a href="{% url 'tag' tag=tag.name %}">#{{ tag.name }}</a></span>
+{% endfor %}
+
+{% endblock %}

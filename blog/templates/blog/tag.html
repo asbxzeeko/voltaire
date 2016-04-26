@@ -1,0 +1,42 @@
+{% extends "blog/main.html" %}
+
+{% load humanize %}
+
+{% block title %}| {{ tag }}{% endblock %}
+{% block content %}
+
+<h1>All posts tagged with <b>{{ tag }}</b>...</h1>
+<hr />
+
+{% for post in posts %}
+    <a href="{% url "post" pk=post.pk %}" class="title"><h2>{{ post.title }}</a> <small>{{ post.posted|naturaltime }}</small></h2>
+    <p>{{ post.body|truncatechars:400 }}</p><br />
+{% endfor %}
+
+<br />
+
+<div class="pagination" style="text-align:center;color:gray;display:block; font-size: 1.5em;">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="/page/{{ posts.previous_page_number }}"><i class="glyphicon glyphicon-menu-left"></i></a>
+        {% endif %}
+        
+        {% if not posts.has_previous %}
+            <i class="glyphicon glyphicon-menu-left"></i>
+        {% endif %}
+
+        <span class="current" style="position: relative; top:-2px;">
+            {{ posts.number }} of {{ posts.paginator.num_pages }}
+        </span>
+
+        {% if posts.has_next %}
+            <a href="/page/{{ posts.next_page_number }}"><i class="glyphicon glyphicon-menu-right"></i></a>
+        {% endif %}
+        
+        {% if not posts.has_next %}
+            <i class="glyphicon glyphicon-menu-right"></i>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

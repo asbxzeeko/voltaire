@@ -1,0 +1,38 @@
+{% extends "blog/main.html" %}
+
+{% load humanize %}
+
+{% block title %}| Home{% endblock %}
+{% block content %}
+
+
+<h1>These posts have '<b>{{ query_string }}</b>' in the title...</h1>
+<hr />
+
+{% for post in found_entries_title %}
+    <a href="{% url "post" pk=post.pk %}" class="title"><h2>{{ post.title }}</a> <small>{{ post.posted|naturaltime }}</small></h2>
+    <p>{{ post.body|truncatechars:400 }} <a href="{% url "post" pk=post.pk %}">Read More</a></p>
+    {% for tag in post.tags.all %}
+        <span class="tag"><a href="{% url 'tag' tag=tag.name %}">#{{ tag.name }}</a></span>
+    {% endfor %}
+    {% empty %}
+    <b>Nothing found!</b>
+    <br />
+{% endfor %}
+
+<hr />
+<h1>These posts have '<b>{{ query_string }}</b>' in the body...</h1>
+<hr />
+
+{% for post in found_entries_text %}
+    <a href="{% url "post" pk=post.pk %}" class="title"><h2>{{ post.title }}</a> <small>{{ post.posted|naturaltime }}</small></h2>
+    <p>{{ post.body|truncatechars:400 }} <a href="{% url "post" pk=post.pk %}">Read More</a></p>
+    {% for tag in post.tags.all %}
+        <span class="tag"><a href="{% url 'tag' tag=tag.name %}">#{{ tag.name }}</a></span>
+    {% endfor %}
+    {% empty %}
+    <b>Nothing found!</b>
+    <br />
+{% endfor %}
+
+{% endblock %}
