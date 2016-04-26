@@ -106,3 +106,26 @@ img.the-cat {
 	padding: 5px;
 	text-align: right;
 }
+
+/* POSTS */
+
+.percent {
+	padding: 10px;
+	text-align: right;
+}
+
+.percent-green {
+	color: green;
+	border-bottom: 1px solid green;
+	border-right: 1px solid green;
+}
+.percent-yellow {
+	color: #B59514;
+	border-bottom: 1px solid #B59514;
+	border-right: 1px solid #B59514;
+}
+.percent-red {
+	color: red;
+	border-bottom: 1px solid red;
+	border-right: 1px solid red;
+}

@@ -9,6 +9,14 @@
 <span class='st_reddit_large' displayText='Reddit'></span>
 <span class='st_email_large' displayText='Email'></span>
 
+{% if post.percent >= 75 %}
+    <h1 class="percent percent-green">{{ post.percent }}%</h1>
+{% elif post.percent >= 30 %}
+    <h1 class="percent percent-yellow">{{ post.percent }}%</h1>
+{% else %}
+    <h1 class="percent percent-red">{{ post.percent }}%</h1>
+{% endif %}
+
 <h2>{{ post.title }} <small>{{ post.posted }}</small></h2>
 <p>{{ post.body|linebreaks }}</p>
 {% for tag in post.tags.all %}

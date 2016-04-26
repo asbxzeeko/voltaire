@@ -25,3 +25,13 @@ a {
 p {
 	text-align:  justify;
 }
+
+.green {
+	color: green;
+}
+.yellow {
+	color: yellow;
+}
+.red {
+	color: red;
+}

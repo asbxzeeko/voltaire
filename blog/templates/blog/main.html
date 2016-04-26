@@ -43,13 +43,13 @@
 	<!-- end BACKGROUND -->
 	
 	<div class="in-wrapper logo">
-		<a href="{% url 'index' %}" class="title">voltaire</a> <small>the cat</small>
+		<a href="{% url 'index' %}" class="title">voltaire</a><!-- <small>the cat</small>-->
 	</div>
 	
 	<div class="in-wrapper nav">
 		<a href="{% url 'index' %}">home</a>/
-		<a href="{% url 'about' %}">about</a>/
-		<a href="#lookbook">lookbook</a>		
+		<a href="{% url 'about' %}">about</a><!--/
+		<a href="#lookbook">lookbook</a>	-->	
 	</div>
 	
 	<div class="in-wrapper content-box container">
@@ -73,8 +73,13 @@
 			
 			<img class="the-cat" src="{% static 'blog/img/the-cat.png' %}" style="display: block; margin:0 auto;">
 			<h2>voltaire the cat</h2>
-			<p>Welcome to my minimalist sewing and lifestyle blog. I accentuate the casual and wearable. My name is {{someone}}, thanks for stopping by.</p>
+			<!--<p>Welcome to my minimalist sewing and lifestyle blog. I accentuate the casual and wearable. My name is {{someone}}, thanks for stopping by.</p>
 			<p>Check out these tags and posts if you're looking for something. Search at the top. Or just scroll around and enjoy the good vibes.</p>
+			-->
+			
+			<p>Welcome to this movie review blog, emphasizing a fair and universal rating based on how good a movie actually is, rather than hype or jurisdiction.</p>
+			<p>Fifty percent is average.</p>
+			
 			{% for tag in 1|taglist %}
 				<span class="tag"><a href="{% url 'tag' tag=tag.0 %}">#{{ tag.0 }}</a></span>
 			{% endfor %}

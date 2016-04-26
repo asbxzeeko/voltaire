@@ -14,10 +14,11 @@ class Tag(models.Model):
     
 class Post(models.Model):
     title = models.CharField(max_length=140)
-    body = models.TextField()
     author = models.ForeignKey(User)
-    
     posted = models.DateTimeField(default=now)
+    
+    body = models.TextField()
+    percent = models.IntegerField()
     
     tags = models.ManyToManyField(Tag, related_name="posts")
     

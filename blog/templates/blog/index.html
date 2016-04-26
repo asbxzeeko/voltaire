@@ -6,12 +6,25 @@
 {% block content %}
 
 {% for post in posts %}
-    <a href="{% url "post" pk=post.pk %}" class="title"><h2>{{ post.title }}</a> <small>{{ post.posted|naturaltime }} by {{ post.author.first_name }} {{ post.author.last_name }}</small></h2>
-    <p>{{ post.body|truncatechars:400 }} <a href="{% url "post" pk=post.pk %}">Read More</a></p>
-    {% for tag in post.tags.all %}
-        <span class="tag"><a href="{% url 'tag' tag=tag.name %}">#{{ tag.name }}</a></span>
-    {% endfor %}
-    <br />
+    <div class="container-fluid">
+        <div class="col-md-3">
+            {% if post.percent >= 75 %}
+                <h1 class="percent percent-green">{{ post.percent }}%</h1>
+            {% elif post.percent >= 30 %}
+                <h1 class="percent percent-yellow">{{ post.percent }}%</h1>
+            {% else %}
+                <h1 class="percent percent-red">{{ post.percent }}%</h1>
+            {% endif %}
+        </div>
+        <div class="col-md-9">
+            <a href="{% url "post" pk=post.pk %}" class="title"><h2>{{ post.title }}</a> <small title="{{ post.posted }}">{{ post.posted|naturaltime }} by {{ post.author.first_name }} {{ post.author.last_name }}</small></h2>
+            <p>{{ post.body|truncatechars:400 }} <a href="{% url "post" pk=post.pk %}">Read More</a></p>
+            {% for tag in post.tags.all %}
+                <span class="tag"><a href="{% url 'tag' tag=tag.name %}">#{{ tag.name }}</a></span>
+            {% endfor %}
+            <br />
+        </div>
+    </div>
 {% endfor %}
 
 <br />
